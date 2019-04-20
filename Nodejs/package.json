@@ -9,8 +9,10 @@
   "author": "Shameer",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "firebase-admin": "^7.0.0"
+    "firebase-admin": "^7.0.0",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "eslint": "^5.15.1"

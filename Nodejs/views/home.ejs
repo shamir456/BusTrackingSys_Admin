@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCGkGvNxDW7dngxYz72R8eqz2DWrFbFsRo",
+    authDomain: "bus-tracker-e4ddd.firebaseapp.com",
+    databaseURL: "https://bus-tracker-e4ddd.firebaseio.com",
+    projectId: "bus-tracker-e4ddd",
+    storageBucket: "bus-tracker-e4ddd.appspot.com",
+    messagingSenderId: "1024300046403"
+  };
+  firebase.initializeApp(config);
+</script>
+    <title>Document</title>
+</head>
+<body>
+     <div>
+         <input type="text" id="name">
+         <input type="text" id="mail">
+       
+     </div>   
+    
+            
+    <button id="admin" onclick={addadmin()} type="button" class="btn btn-primary"> submit </button>
+
+    <h1>hello world</h1>
+    <button  id="google-signin" onclick={signInWithGoogle()} type="button" class="btn btn-primary">
+        Sign In with Google
+    </button>
+    
+        <button onclick={signout()} style="display:none; visibility:hidden " id="signout" type="button" class="btn btn-primary">
+            Sign Out with Google
+        </button>
+        
+    <script src="js/Auth.js" ></script>
+    <script src="js/firebase.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
