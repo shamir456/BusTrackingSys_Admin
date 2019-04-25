@@ -25,12 +25,14 @@ admin.initializeApp({
 
 
 var db = admin.database();
-var ref = db.ref("/admins");
+var ref = db.ref("/drivers");
 
 app.get('/', (req, res) => {
   
   // ref.once("value", function(snapshot) {
-  //   console.log(snapshot.val());
+  //   snapshot.forEach(function(data) {
+      
+  //   });
   // });
   res.render('home.ejs')
   
