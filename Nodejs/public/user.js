@@ -1,6 +1,6 @@
 
 
-function adddriver()
+function adduser()
 { 
 
     var name=document.getElementById('name').value
@@ -9,7 +9,7 @@ function adddriver()
     var mail=document.getElementById('mail').value
     var password=document.getElementById('password').value
     var database= firebase.database()
-        var adminref=database.ref('/drivers/'+username).set({
+        var adminref=database.ref('/users/'+username).set({
         email: mail,
         lg: 1,
         lt: 0,
@@ -22,18 +22,18 @@ function adddriver()
 
 }
 
-function deletedriver()
+function deleteuser()
 { 
-    var admin=document.getElementById('username').value
+    var username=document.getElementById('username').value
     var database= firebase.database()
-    var ref=database.ref('/drivers/'+admin)
+    var ref=database.ref('/users/'+username)
    return ref.remove()
     
  
 
 
 }
-function updatedriver()
+function updateauser()
 { 
    
     
@@ -42,7 +42,7 @@ function updatedriver()
     var username=document.getElementById('username').value
     var mail=document.getElementById('mail').value
     var password=document.getElementById('password').value
-    var ref=database.ref('/drivers/'+username).set({
+    var adminref=database.ref('/users/'+username).set({
         name: name,
         mail: mail,
         lg: 1,
@@ -56,12 +56,12 @@ function updatedriver()
 
 
 }
-function readadmin()
+function readuser()
 { 
     var database= firebase.database()
-    var admin=document.getElementById('name').value
-    var adminref=database.ref('/drivers/'+admin)
-    adminref.once('value',function(snapshot)
+    var user=document.getElementById('name').value
+    var ref=database.ref('/users/'+user)
+    ref.once('value',function(snapshot)
         {
             console.log(snapshot.val())
 

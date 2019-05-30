@@ -8,6 +8,7 @@ function adddriver()
     var username=document.getElementById('username').value
     var mail=document.getElementById('mail').value
     var password=document.getElementById('password').value
+    var bus=document.getElementById('bus').value
     var database= firebase.database()
         var adminref=database.ref('/drivers/'+username).set({
         email: mail,
@@ -16,6 +17,7 @@ function adddriver()
         password: password,
         username: username,
         phone:phone,
+        bus:bus,
         name:name
       });
 
@@ -42,6 +44,7 @@ function updatedriver()
     var username=document.getElementById('username').value
     var mail=document.getElementById('mail').value
     var password=document.getElementById('password').value
+    var bus=document.getElementById('bus').value
     var ref=database.ref('/drivers/'+username).set({
         name: name,
         mail: mail,
@@ -49,6 +52,7 @@ function updatedriver()
         lt: 0,
         password: password,
         username: username,
+        bus:bus,
         phone:phone
       });
     
@@ -56,7 +60,7 @@ function updatedriver()
 
 
 }
-function readadmin()
+function readdriver()
 { 
     var database= firebase.database()
     var admin=document.getElementById('name').value

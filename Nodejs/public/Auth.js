@@ -4,36 +4,34 @@ function checkifLoggedIn()
                 if(user)
                 {
                     console.log(user)
-                    document.getElementById('google-signin')
-                .setAttribute('style', 'dispay:none; visibility : hidden')
-                document.getElementById('signout')
-                .setAttribute('style', 'dispay:inline-block; visibility : visible')
+                    document.getElementById('google-signin').setAttribute('style', 'display:none; visibility : hidden;');
+                    document.getElementById('signout').setAttribute('style', 'display:inline-block; visibility : visible;');
 
 
                 }else
                 {
                     document.getElementById('google-signin')
-                    .setAttribute('style', 'dispay:inline-block; visibility :visible')
+                    .setAttribute('style', 'display:inline-block; visibility :visible;');
                     document.getElementById('signout')
-                    .setAttribute('style', 'none; visibility : hidden')
-    
-
+                    .setAttribute('style', 'display:none; visibility : hidden;');
+                    document.getElementById('map')
+                    .setAttribute('style', 'display:none; visibility : hidden;');
                 }
             })
              
         }
 function signoutfromGoogle()
 {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
     
 }
 window.onload=function()
 {
-    checkifLoggedIn()
+    checkifLoggedIn();
 }
 function signInWithGoogle()
 {
-    var googleAuthProvider= new firebase.auth.GoogleAuthProvider
+    var googleAuthProvider= new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithPopup(googleAuthProvider)
     .then(function(data)
     {

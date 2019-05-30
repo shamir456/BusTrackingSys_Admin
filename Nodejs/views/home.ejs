@@ -22,68 +22,51 @@
 
 
 
-<title>Document</title>
+<title>Bus Tracking System</title>
 
+<script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
 
 <script src='https://static-assets.mapbox.com/gl-pricing/dist/mapbox-gl.js'></script>   
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-    
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+  
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.css' type='text/css' />
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.min.js'></script>
-   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.css' type='text/css' />
-
-
-
-
-   <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
-<!--[if lt IE 9]>
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
-<![endif]-->
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
 
 
 </head>
 <body>
-   
-    <div id='map' style='width: 1000px; height: 600px;'></div>
+   <div>
+     <h1>Map </h1></br>
+   </div>
+    
+    <div  id='map' style='width: 1850px; height: 500px;'></div>
     <pre id='info'></pre>
-
+  <h1>Our Drivers</h1>
+  <ul>
+      <% array.forEach(function(driver){ %>
+        <%- driver.username %><br>
+      <% }); %>
+    </ul>
     
         
-        <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Enter email">
-              
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputName">Name</label>
-                <input type="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
-                
-              </div>
-              <div class="form-group">
-                <label for="exampleInputUsername">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter Username">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPhone">Phone</label>
-                <input type="text" class="form-control" id="phone" placeholder="Enter Phone">
-              </div>
-         <button id="admin" onclick={addadmin()} type="button" class="btn btn-primary"> submit </button>
-        <button onclick={signout()} style="display:none; visibility:hidden " id="signout" type="button" class="btn btn-primary">
+        <button  id="signout" type="button" onclick={signoutfromGoogle()} class="btn btn-primary" style="display:none; color: red; visibility:visible;">
             Sign Out with Google
         </button>
-        <button  id="google-signin" onclick={signInWithGoogle()} type="button" class="btn btn-primary">
+        <button  id="google-signin" onclick={signInWithGoogle()} type="button" class="btn btn-primary" style="display:none; visibility:visible;">
             Sign In with Google
         </button>
-          </form>   
-    <script src="js/Auth.js" ></script>
-    <script src="js/firebase.js" ></script>
+          </form>
+          <h1>Create a new user</h1>
+          <button id=add-user type="button" class="btn btn-primary" onclick="window.location.href = 'http://127.0.0.1:8080/add/user';">Create User</button>   
+          <h1>Create a new Driver</h1>
+          <button id=add-driver onclick="window.location.href = 'http://127.0.0.1:8080/add/user';" type="button" class="btn btn-primary">Create Driver</button>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -93,65 +76,140 @@
 
 
 
+    
+    
+
+
+
+
+
+
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaXRhY2hpMTIzIiwiYSI6ImNqdXFzdWdwNTNzMWg0NHBqbDRzZmhyNDIifQ.daYdD-DlyAtoJpCExRO7xg';
-    var map = new mapboxgl.Map({
-      container: 'map', // HTML container id
-      style: 'mapbox://styles/mapbox/streets-v11', // style URL
-      center: [-21.92661562, 64.14356426], // starting position as [lng, lat]
-      zoom: 13
-    });
-    
-    var popup = new mapboxgl.Popup()
-    .setHTML('<h3>Reykjavik Roasters</h3><p>A good coffee shop</p>');
+  L.mapbox.accessToken = 'pk.eyJ1IjoiaXRhY2hpMTIzIiwiYSI6ImNqdXFzdWdwNTNzMWg0NHBqbDRzZmhyNDIifQ.daYdD-DlyAtoJpCExRO7xg';
+  var map = L.mapbox.map('map')
+    .setView([ 24.9056,67.1432527160645], 10.7)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
     
 
-
-    // map.addControl(new MapboxGeocoder({
-    // accessToken: mapboxgl.accessToken,
-    // mapboxgl: mapboxgl
-    // }));
-
-    // map.addControl(geocoder);
-
-    //firebase work
+//firebase work
 var db=firebase.database()
 var ref = db.ref("/drivers");
-
-    ref.once("value", function(snapshot) {
+driverlist=[]
+markerdrivers=[]
+driverinfo=[]
+//change in firebase will run this function
+    ref.on("value", function(snapshot) {
+      emptydmap()
     snapshot.forEach(function(data) {
-      console.log("The " + data.key + " dinosaur's score is " + data.val().lt  + data.val().lg);
-      var arr =  new mapboxgl.LngLat( data.val().lg, data.val().lt);
+      driverinfo.push(data.val().username)
+      console.log(data.val().username)
+      var arr =  new mapboxgl.LngLat(  data.val().lg,data.val().lt);
       console.log(arr);
+      driverlist.push(arr);
      
-      var marker = new mapboxgl.Marker()
-    .setLngLat( arr)
-    .setPopup(popup)
-    .addTo(map);
     });
+    mapmarkdriver(driverlist)
+
   });
- 
-//     map.on('mousemove', function (e) {
-// document.getElementById('info').innerHTML =
-// // e.point is the x, y coordinates of the mousemove event relative
-// // to the top-left corner of the map
-// JSON.stringify(e.point) + '<br />' +
-// // e.lngLat is the longitude, latitude geographical position of the event
-// JSON.stringify(e.lngLat); 
-// var l=e.lngLat.toArray(); // e.lngLat coordinates
-//      // marker
-//     var marker = new mapboxgl.Marker()
-//     .setLngLat([l[0],l[1]])
-//     .setPopup(popup)
-//     .addTo(map);
 
-//     console.log(l)
-// });
+  function mapmarkdriver(driverlist)
+  {
+    //for driver marker
+    for(i=0;i<driverlist.length;i++)
+    {
+      p=i+1
+      console.log(i)
+        var marker = L.marker(driverlist[i], {
+        icon: L.mapbox.marker.icon({
+          'marker-color': '#f86767'
+        })
+    });
+    //for online popup
+    marker.bindPopup('Driver Online '+driverinfo[i])
+
+      marker.addTo(map);
+      markerdrivers.push(marker)
+   
+    }
+
+  }
 
 
 
-</script>
+var ref = db.ref("/users");
+  userlist=[]
+  markerusers=[]
+  userinfo=[]
+  //change in firebase will run this function
+ref.on("value", function(snapshot) {
+
+  emptyumap()
+
+  snapshot.forEach(function(data) {
+      console.log("The " + data.key + "  score is " + data.val().lt  + data.val().lg);
+      var arr =  new mapboxgl.LngLat( data.val().lg,data.val().lt);
+      console.log(arr);
+      userinfo.push(data.val().username) //pushing username of user in array
+      userlist.push(arr)
     
+      
+    });
 
+    mapmarkuser(userlist)
+});  
+
+
+function mapmarkuser(userlist)
+  {
+      //mark on map
+    for(i=0;i<userlist.length;i++)
+    {
+      p=i+1
+      console.log(i)
+        var marker = L.marker(userlist[i], {
+        icon: L.mapbox.marker.icon({
+          'marker-color': '#f4a442'
+        })
+    });
+    //popup online
+    marker.bindPopup('User Online '+ userinfo[i])
+    
+      marker.addTo(map);
+      markerusers.push(marker);
+
+   
+    }
+
+  }
+
+  function emptyumap() {
+    //empty your array
+    
+    //empty markers from map    
+    markerusers.forEach(function(entry) {
+                map.removeLayer(entry);
+            });
+
+    userlist.length = 0;
+    
+}
+function emptydmap() {
+    //empty your array
+    markerdrivers.forEach(function(entry) {
+                map.removeLayer(entry);
+            });
+
+    driverlist.length = 0;
+    
+    
+}
+
+
+  
+</script>
+
+<script src="js/Auth.js" ></script>
+<script src="js/firebase.js" ></script>    
 </body>
 </html>
